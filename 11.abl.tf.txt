@@ -3,8 +3,12 @@ resource "aws_lb" "jmg_alb" {
     internal = false
     load_balancer_type = "application"
     security_groups = [aws_security_group.jmg_sg.id]
-    subnets = [aws_subnet.jmg_puba.id,aws_subnet.jmg_pubc.id]
+    subnets = [aws_subnet.jmg_pub[0].id]
     tags = {
         "Name" = "jmg-alb"
     }
+}
+
+output "dns_name" {
+    value = aws_lb.jmg_alb.dns_name
 }

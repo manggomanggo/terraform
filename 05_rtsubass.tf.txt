@@ -1,5 +1,5 @@
 resource "aws_route_table_association" "jmg_igas_puba" {
-    subnet_id = aws_subnet.jmg_puba.id
+    subnet_id = aws_subnet.jmg_pub[0].id
     route_table_id = aws_route_table.jmg_rt.id
 }
 

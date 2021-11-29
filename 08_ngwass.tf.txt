@@ -1,0 +1,11 @@
+resource "aws_route_table_association" "jmg_ngwass_pri" {
+    count = 2
+    subnet_id = aws_subnet.jmg_pri[count.index].id
+    route_table_id = aws_route_table.jmg_ngwrt.id
+}
+
+resource "aws_route_table_association" "jmg_ngwass_pridb" {
+    count = 2
+    subnet_id = aws_subnet.jmg_pridb[count.index].id
+    route_table_id = aws_route_table.jmg_ngwrt.id
+}

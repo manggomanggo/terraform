@@ -16,13 +16,14 @@ data "aws_ami" "amzn" {
 
 resource "aws_instance" "jmg_web" {
  ami = data.aws_ami.amzn.id
- instance_type = "t2.micro"
- key_name = "ssw-key"
+ instance_type = "var-t2"
+ key_name = "var-key"
  vpc_security_group_ids = [aws_security_group.jmg_sg.id]
- availability_zone = "ap-northeast-2a"
+ availability_zone = "var-region"
  private_ip = "10.0.0.11"
- subnet_id = aws_subnet.jmg_puba.id
-
+ subnet_id = aws_subnet.jmg_pub[0].id
+ user_data = file("./install.sh")
+ 
  tags = {
      "Name" = "jmg-web"
  }
